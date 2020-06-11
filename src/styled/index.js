@@ -7,7 +7,7 @@ const whiteFont = '#ffffff'
 
 const MyHeader = styled.header`
 width: 50%;
-margin: 0 auto;
+margin: 25px auto 0;
 text-align: center;
 h1 {
   color: ${blackFont};
