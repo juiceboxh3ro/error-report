@@ -32,6 +32,17 @@ const handleVerify = async (id) => {
   .catch(err => console.error(err))
 }
 
+const handleDelete = async (id) => {
+  await axiosWithAuth()
+  .delete(`/api/report/${id}`)
+  .then(({ status }) => {
+    if (status === 200) {
+      setReports(reports.filter(i => i.id !== id))
+    }
+  })
+  .catch(err => console.error(err))
+}
+
 const handleName = () => {
   switch(values) {
     case 'JFZ1':
@@ -94,11 +105,12 @@ return (
         <th>Suggested Change</th>
         <th>Additional Comments</th>
         <th>Verify?</th>
+        <th>Delete?</th>
       </tr>
     </thead>
     <tbody>
-      {reports.length && reports.map(report => (
-        <SingleError key={report.id} data={report} handleVerify={handleVerify} />
+      {reports.map(report => (
+        <SingleError key={report.id} data={report} handleVerify={handleVerify} handleDelete={handleDelete} />
       ))}
     </tbody>
   </MyTable>

@@ -86,7 +86,7 @@ return (
       </tr>
     </thead>
     <tbody>
-      {reports.length && reports.map(report => (
+      {reports.map(report => (
         <Typo key={report.id} data={report} />
       ))}
     </tbody>

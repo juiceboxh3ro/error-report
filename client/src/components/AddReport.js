@@ -99,7 +99,6 @@ return (
       <textarea onChange={handleChange} name="description" id="description" cols="30" rows="10" value={values.description}></textarea>
     </div>
     <div id="send">
-      <label htmlFor="submit">Submit</label>
       <input type="submit" value="Send" />
     </div>
   </Form>

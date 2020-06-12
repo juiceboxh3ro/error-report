@@ -10,7 +10,7 @@ return (
     <td>{data.typo}</td>
     <td>{data.suggestion}</td>
     <td>{data.description}</td>
-    <td>{data.verified ? '✔' : ''}</td>
+    <td>{data.verified ? <i className="fas fa-check"></i> : ''}</td>
   </tr>
   :
   // because we can't have an empty table
