@@ -20,13 +20,6 @@ function bodycheck(req, res, next) {
   if (!req.body || !req.body.username || !req.body.password) {
     res.status(400).json({ error: "Missing required information." });
   } else if (whitelist.includes(req.body.username)) {
-    const { username, password } = req.body;
-    if (username.length < 4) {
-      res.status(400).json({ error: "Username is not cromulent." });
-    }
-    if (password.length < 6) {
-      res.status(400).json({ error: "Password is not cromulent." });
-    }
     next();
   } else {
     res.status(404).json({ error: "Send a DM to germ on the JFZ! Discord to request admin access." })

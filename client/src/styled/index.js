@@ -194,7 +194,8 @@ font-size: 1.2rem;
 const MyButton = styled.button`
 padding: 5px;
 margin: 50px auto 0;
-width: 50%;
+width: 15%;
+text-align: center;
 border-radius: 5px;
 border: 1px solid ${blackFont};
 transition: all 0.3s ease;
@@ -217,6 +218,11 @@ transition: all 0.3s ease;
   background-color: coral;
   cursor: pointer;
 }
+`;
+
+const LoginPage = styled.div`
+display: flex;
+flex-direction: column;
 `;
 
 const LoginFormStyled = styled.form`
@@ -282,5 +288,6 @@ export {
   MyFooter,
   MyButton,
   TableButton,
-  LoginFormStyled
+  LoginFormStyled,
+  LoginPage
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { LoginFormStyled, MyButton } from '../../styled'
+import { LoginPage, LoginFormStyled, MyButton } from '../../styled'
 export default function LoginForm({ handleChange, handleSubmit, handleLogin, values, login }) {
 return (
+  <LoginPage>
   <LoginFormStyled onSubmit={handleSubmit}>
     <div>
       <label htmlFor="username">Username</label>
@@ -15,6 +16,7 @@ return (
     <div id="send" style={{ marginTop: "30px" }}>
       <input type="submit" value={`${login}`} />
     </div>
-    <MyButton onClick={handleLogin}>New Reviewer?</MyButton>
   </LoginFormStyled>
+  <MyButton onClick={handleLogin}>New Reviewer?</MyButton>
+  </LoginPage>
 )}

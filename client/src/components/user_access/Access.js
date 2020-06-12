@@ -31,7 +31,9 @@ export default function Login() {
           history.push('/review')
         }
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.error(err)
+      })
     } else if (login === "Register") {
       axiosWithAuth()
       .post('/api/auth/register', values)
