@@ -1,4 +1,4 @@
-# JFZ Error Reports
+# FZ Error Reports
 
 A live version of this app can found at;
 `https://fz-error-report.herokuapp.com/`
