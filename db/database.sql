@@ -1,4 +1,4 @@
-CREATE DATABASE error_report;
+-- CREATE DATABASE error_report;
 
 CREATE TABLE reports(
   id SERIAL PRIMARY KEY,
