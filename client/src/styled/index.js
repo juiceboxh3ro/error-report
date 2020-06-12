@@ -67,6 +67,15 @@ input, select, textarea {
 #send {
   width: 50%;
   margin: 0 auto;
+
+  input[type="submit"] {
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: coral;
+      cursor: pointer;
+    }
+  }
 }
 `;
 
@@ -141,6 +150,21 @@ font-size: 1.4rem;
 bottom: 0;
 left: 0;
 right: 0;
+background-color: white;
+`;
+
+const MyButton = styled.button`
+padding: 5px;
+margin: 50px auto 0;
+width: 50%;
+border-radius: 5px;
+border: 1px solid ${blackFont};
+transition: all 0.3s ease;
+
+&:hover {
+  background-color: coral;
+  cursor: pointer;
+}
 `;
 
 export {
@@ -151,5 +175,6 @@ export {
   Reports,
   MyTable,
   Loading,
-  MyFooter
+  MyFooter,
+  MyButton
 }

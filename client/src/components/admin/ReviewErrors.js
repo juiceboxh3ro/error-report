@@ -1,36 +1,35 @@
 import React, { useState, useEffect } from 'react'
-import firebase from '../firebase'
+import { axiosWithAuth } from '../../utility/axiosWithAuth'
+import SingleError from './SingleError'
+import { MyHeader, MyTable, Loading } from '../../styled'
 
-import Typo from './Typo'
-import { MyHeader, MyTable, Loading } from '../styled'
-
-export default function TyposView({ values }) {
+export default function ReviewErrors({ values }) {
 const [reports, setReports] = useState([])
 const [bookName, setBookName] = useState('')
 const [loading, setLoading] = useState(false)
 
 const handleData = async () => {
-  if(!values) return
   setLoading(true)
-  setReports([])
-  let submissions = []
-  let snapshot = await firebase.firestore().collection('reports').where('book','==',`${values}`).orderBy('page').get()
-  snapshot.forEach(doc => {
-    const submission = {
-      'id': doc.id,
-      'book': doc.data().book,
-      'page': doc.data().page,
-      'revision': doc.data().revision,
-      'typo': doc.data().typo,
-      'suggestion': doc.data().suggestion,
-      'description': doc.data().description,
-      'reviewed': doc.data().reviewed
+  await axiosWithAuth()
+  .get(`/api/report/${values}`)
+  .then(({ status, data }) => {
+    if (status === 200) {
+      setReports(data.unverified)
     }
-    submissions.push(submission)
-    const byPage = submissions.sort((a, b) => a.page - b.page)
-    setReports(byPage)
   })
+  .catch(err => console.error(err))
   setLoading(false)
+}
+
+const handleVerify = async (id) => {
+  await axiosWithAuth()
+  .put(`/api/report/${id}`, { verified: true })
+  .then(({ status }) => {
+    if (status === 200) {
+      setReports(reports.filter(i => i.id !== id))
+    }
+  })
+  .catch(err => console.error(err))
 }
 
 const handleName = () => {
@@ -79,6 +78,7 @@ const handleName = () => {
 useEffect(() => {
   handleData()
   handleName()
+// eslint-disable-next-line
 }, [values])
 
 return (
@@ -88,17 +88,17 @@ return (
   <MyTable>
     <thead>
       <tr>
-        <th>Page</th>
         <th>Revision</th>
-        <th>Typo</th>
-        <th>Suggested</th>
-        <th>Description</th>
-        <th>Verified</th>
+        <th>Page</th>
+        <th>Typo/Error</th>
+        <th>Suggested Change</th>
+        <th>Additional Comments</th>
+        <th>Verify?</th>
       </tr>
     </thead>
     <tbody>
-      {reports.map(data => (
-        <Typo key={data.id} data={data} />
+      {reports.length && reports.map(report => (
+        <SingleError key={report.id} data={report} handleVerify={handleVerify} />
       ))}
     </tbody>
   </MyTable>

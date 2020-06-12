@@ -1,16 +1,16 @@
 import React from 'react';
 
-export default function Typo({ data }) {
+export default function SingleError({ data, handleVerify }) {
 return (
 <>
   {data ?
   <tr>
-    <td>{data.page}</td>
     <td>{data.revision}</td>
+    <td>{data.page}</td>
     <td>{data.typo}</td>
     <td>{data.suggestion}</td>
     <td>{data.description}</td>
-    <td>{data.reviewed ? '✅' : ''}</td>
+    <td><button onClick={() => handleVerify(data.id)}>✔</button></td>
   </tr>
   :
   // because we can't have an empty table

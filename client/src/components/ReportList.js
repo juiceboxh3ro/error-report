@@ -4,7 +4,7 @@ import { Form, Reports } from '../styled'
 import TyposView from './TyposView'
 
 export default function ReportList() {
-  const [values, setValues] = useState('')
+  const [values, setValues] = useState('JFZ1')
 
   const handleChange = (e) => {
     e.preventDefault();

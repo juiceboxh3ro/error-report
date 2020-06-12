@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Form, MyHeader } from '../styled'
-
-import firebase from '../firebase'
+import { axiosWithAuth } from '../utility/axiosWithAuth'
 
 export default function AddReport() {
 const [values, setValues] = useState({
@@ -11,32 +10,21 @@ const [values, setValues] = useState({
   revision: 1,
   typo: '',
   suggestion: '',
-  description: ''
+  description: '',
+  date_submitted: "January 1, 1970, 00:00:00 UTC"
 })
 const [success, setSuccess] = useState(false)
 const history = useHistory();
 
 const handleSubmit = e => {
   e.preventDefault()
-
   if(!values.book || values.book === "Select A Book" || !values.page || !values.typo) return;
 
-  firebase.firestore().collection('reports')
-  .add({
-    ...values,
-    reviewed: false
-  })
-
-  setValues({
-    book: 'Select A Book',
-    page: 0,
-    revision: 1,
-    typo: '',
-    suggestion: '',
-    description: ''
-  })
-
-  setSuccess(true)
+  values.date_submitted = new Date().toISOString()
+  axiosWithAuth()
+  .post('/api/report', values)
+  .then(res => { if(res.status === 201) setSuccess(true) })
+  .catch(err => console.error(err))
 }
 
 const handleChange = e => {
@@ -56,6 +44,7 @@ const clearSuccess = () => {
 
 useEffect(() => {
   clearSuccess()
+// eslint-disable-next-line
 }, [success])
 
 return (
@@ -90,11 +79,11 @@ return (
     <section>
       <div>
         <label htmlFor="page">Page Number</label>
-        <input required onChange={handleChange} type="number" id="page" name="page" min="1" defaultValue="0" value={values.page} />
+        <input required onChange={handleChange} type="number" id="page" name="page" min="1" value={values.page} />
       </div>
       <div>
         <label htmlFor="revision">Revision</label>
-        <input onChange={handleChange} type="number" id="revision" name="revision" min="1" defaultValue="1" value={values.revision} />
+        <input onChange={handleChange} type="number" id="revision" name="revision" min="1" value={values.revision} />
       </div>
     </section>
     <div>
