@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const pool = require('../database');
+require("dotenv").config()
 const { genToken, bodycheck, restricted } = require('./auth-helpers');
 
 router.post("/register", bodycheck, async (req, res) => {
@@ -9,7 +10,7 @@ router.post("/register", bodycheck, async (req, res) => {
   const exists = await pool.query('SELECT * FROM users WHERE username = $1', [username])
 
   if (!exists.rows[0]) {
-      const rounds = 12;
+      const rounds = process.env.HASH_ROUNDS || 12;
       password = bcrypt.hashSync(password, rounds);
 
       const { rows } = await pool.query('INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *', [username, password]);

@@ -5,7 +5,7 @@ CREATE TABLE reports(
   book VARCHAR(99) NOT NULL,
   page INTEGER NOT NULL,
   revision INTEGER NOT NULL,
-  typo VARCHAR(255) NULL,
+  typo VARCHAR(255) NOT NULL,
   suggestion VARCHAR(255) NULL,
   description VARCHAR(1024) NULL,
   verified BOOLEAN DEFAULT false,

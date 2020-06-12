@@ -53,7 +53,9 @@ return (
   <MyHeader>
     <h1>Sent!</h1>
     <p>An admin will review your submission shortly.</p>
-  </MyHeader> : <></>}
+  </MyHeader> : <MyHeader>
+    <h1>Submit a typo or error</h1>
+  </MyHeader>}
   <Form onSubmit={handleSubmit}>
     <div>
       <label htmlFor="book">Book Name:</label>

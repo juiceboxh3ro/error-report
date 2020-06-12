@@ -7,7 +7,7 @@ const whiteFont = '#ffffff'
 const tablet = '950px', smartphone = '600px'
 
 const MyHeader = styled.header`
-margin: 25px auto 0;
+margin: 65px auto 0;
 text-align: center;
 h1 {
   color: ${blackFont};
@@ -33,7 +33,7 @@ position: relative;
 
 const Form = styled.form`
 width: 35%;
-margin: 75px auto 0;
+margin: 3rem auto;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -132,7 +132,6 @@ div {
 `;
 
 const Reports = styled.div`
-margin: 65px auto 0;
 display: flex;
 flex-direction: column;
 
@@ -145,7 +144,7 @@ select {
 
 const MyTable = styled.table`
 width: 70%;
-margin: 50px auto 0;
+margin: 20px auto 0;
 text-align: center;
 color: ${blackFont};
 
@@ -165,6 +164,7 @@ width: 90%;
 
 const Loading = styled.h2`
 text-align: center;
+height: 25px;
 font-size: 2rem;
 margin-top: 2rem;
 color: ${blackFont};
