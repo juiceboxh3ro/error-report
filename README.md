@@ -1,5 +1,8 @@
 # JFZ Error Reports
 
+A live version of this app can found at;
+`https://fz-error-report.herokuapp.com/`
+
 ### Feel free to fork this and make suggestions for features or styles you'd like to see.
 ### This app uses React and Postgres.
 
@@ -12,9 +15,6 @@
 ### Profit
 
 ## Error Reports Endpoints
-
-`server link goes here`
-
 #### Users Schema
 
 | field    | data type        | metadata                                            |

@@ -21,7 +21,6 @@ router.post("/register", bodycheck, async (req, res) => {
       res.status(400).json({ error: "Username taken." })
     }
   } catch ({ message, stack }) {
-    console.log("it's here")
     res.status(500).json({ message, stack })
   }
 });
@@ -30,7 +29,6 @@ router.post("/login", async (req, res) => {
   let { username, password } = req.body;
   try {
     const { rows } = await pool.query('SELECT * FROM users WHERE username = $1', [username])
-    console.log(rows)
     if (rows[0] && bcrypt.compareSync(password, rows[0].password)) {
       const token = genToken(rows[0]);
       res.status(200).json({ message: "Welcome Home", token });
@@ -41,6 +39,10 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message, stack })
   }
 });
+
+router.post("/reset", async (req, res) => {
+
+})
 
 router.delete('/deactivate', restricted, async (req, res) => {
   let { username, password } = req.body;
