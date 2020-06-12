@@ -10,7 +10,7 @@ A live version of this app can found at;
 
 # Getting Started
 ### Clone this repo
-### Run `yarn start` and `yarn server` to start the frontend and backend respectively.
+### Run `npm start` in both the frontend and backend to start them up.
 ### ???
 ### Profit
 
