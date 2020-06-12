@@ -44,12 +44,9 @@ A live version of this app can found at;
 The following endpoints are available publicly.
 | HTTP Request | Endpoint                   | Description                                                                         |
 | :----------- | :--------------------------| :---------------------------------------------------------------------------------- |
-| `GET`        | `/`                        | pings the server to check if it's awake                                             |
 | `POST`       | `/api/auth/register`       | register a new user, username must be on whitelist                                  |
 | `POST`       | `/api/auth/login`          | login a user with their username and password, returns a token                      |
-| `DELETE`     | `/api/auth/deactivate`     | removes a user from the database, requires their credentials and a token            |
 | `GET`        | `/api/report`              | returns an array of every submitted report, regardless of verification status       |
 | `GET`        | `/api/report/:book`        | returns 3 arrays (all, verified, unverified) of every submitted report for a book   |
 | `POST`       | `/api/report`              | creates a new report, returns the report on success                                 |
 | `PUT`        | `/api/report/:id`          | updates verification status of a report by ID                                       |
-| `DELETE`     | `/api/report/:id`          | removes a report by ID                                                              |
