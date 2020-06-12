@@ -9,7 +9,9 @@ A live version of this app can found at;
 ### Reports are reviewed manually to make sure that they are indeed errors and that the submitted content is not vulgar.
 
 # Getting Started
-### Clone this repo
+### Clone this repo.
+### Install dependencies.
+### Set up your PostgreSQL information in a .env file in the root directory (look in database.js to see what you need).
 ### Run `npm start` in both the frontend and backend to start them up.
 ### ???
 ### Profit
@@ -39,7 +41,7 @@ A live version of this app can found at;
 
 #### API
 
-The following endpoints are available to test the functionality of the model methods.
+The following endpoints are available publicly.
 | HTTP Request | Endpoint                   | Description                                                                         |
 | :----------- | :--------------------------| :---------------------------------------------------------------------------------- |
 | `GET`        | `/`                        | pings the server to check if it's awake                                             |
